@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>髫懷ｮｳ蟷ｴ驥代メ繝｣繝・ヨ繝懊ャ繝郁ｩｦ菴・/title>
+  <style>
+    :root {
+      --bg: #f4f8fb;
+      --card: #ffffff;
+      --main: #1f6f8b;
+      --main-dark: #155270;
+      --text: #1f2933;
+      --muted: #64748b;
+      --line: #dbe7ef;
+      --warn: #fff7ed;
+      --warn-line: #fed7aa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #e8f5fb, #ffffff);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 0 0 12px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .progress {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 16px 0;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--main);
+      transition: width 0.2s ease;
+    }
+
+    .question {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .option {
+      width: 100%;
+      border: 2px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .option:hover {
+      border-color: var(--main);
+      background: #f0f9ff;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .primary {
+      border: 0;
+      background: var(--main);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .primary:hover {
+      background: var(--main-dark);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .notice {
+      background: var(--warn);
+      border: 1px solid var(--warn-line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .result {
+      border-left: 6px solid var(--main);
+      padding-left: 14px;
+      margin-bottom: 16px;
+    }
+
+    .list {
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+
+    .lead-box {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 12px;
+    }
+
+    .lead {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #075985;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 14px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .question {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="pill">隧ｦ菴懃沿</span>
+      <h1>髫懷ｮｳ蟷ｴ驥・蜿礼ｵｦ蜿ｯ閭ｽ諤ｧ繝√ぉ繝・け</h1>
+      <p>
+        縺・￥縺､縺九・雉ｪ蝠上↓遲斐∴繧九→縲∝女邨ｦ蜿ｯ閭ｽ諤ｧ縺ｮ逶ｮ螳峨→縲∵ｬ｡縺ｫ逶ｸ隲・☆縺ｹ縺肴婿豕輔ｒ遒ｺ隱阪〒縺阪∪縺吶・
+      </p>
+      <p class="muted">
+        縺薙・逕ｻ髱｢縺ｯ繝ｭ繝ｼ繧ｫ繝ｫ遒ｺ隱咲畑縺ｮ隧ｦ菴懷刀縺ｧ縺吶ょ女邨ｦ蜿ｯ蜷ｦ繧剃ｿ晁ｨｼ縺吶ｋ繧ゅ・縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲・
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>蜈･蜉帙＠縺ｪ縺・ュ蝣ｱ</h2>
+      <p class="muted">
+        縺薙・隧ｦ菴懊〒縺ｯ縲∵ｰ丞錐繝ｻ菴乗園繝ｻ髮ｻ隧ｱ逡ｪ蜿ｷ繝ｻ繝｡繝ｼ繝ｫ繧｢繝峨Ξ繧ｹ繝ｻ繝槭う繝翫Φ繝舌・繝ｻ蟷ｴ驥醍分蜿ｷ繝ｻ險ｺ譁ｭ譖ｸ逕ｻ蜒上・譛ｬ莠ｺ遒ｺ隱肴嶌鬘槭・蜈･蜉帙＠縺ｾ縺帙ｓ縲・
+      </p>
+    </section>
+
+    <section id="chat" class="card">
+      <div class="progress" aria-label="騾ｲ陦檎憾豕・>
+        <span id="progressBar"></span>
+      </div>
+
+      <p id="stepLabel" class="muted"></p>
+      <div id="question" class="question"></div>
+      <div id="options" class="options"></div>
+
+      <div class="actions">
+        <button id="backButton" class="secondary" type="button">謌ｻ繧・/button>
+        <button id="restartButton" class="secondary" type="button">譛蛻昴°繧峨ｄ繧顔峩縺・/button>
+      </div>
+    </section>
+
+    <section id="result" class="card hidden">
+      <div class="result">
+        <p class="muted">蛻､螳夂ｵ先棡</p>
+        <h2 id="resultTitle"></h2>
+        <p id="resultBody"></p>
+      </div>
+
+      <div class="notice">
+        <strong>豕ｨ諢乗嶌縺・/strong>
+        <p>
+          蛻､螳壹・邨碁ｨ灘援縺ｫ繧医ｋ逶ｮ螳峨〒縺吶ょｮ滄圀縺ｮ邨先棡縺ｯ縲∝・險ｺ譌･縲∽ｿ晞匱譁咏ｴ堺ｻ倡憾豕√∬ｨｺ譁ｭ譖ｸ縲∫函豢ｻ迥ｶ豕√∝ｰｱ蜉ｴ迥ｶ豕√↑縺ｩ縺ｧ螟峨ｏ繧翫∪縺吶・
+        </p>
+      </div>
+
+      <h2>譁咎≡陦ｨ遉ｺ</h2>
+      <p>
+        譁咎≡縺ｯ豁｣蠑冗嶌隲・ｾ後↓遒ｺ隱阪＠縺ｾ縺吶ゅ％縺薙〒縺ｯ螳滓焚蛟､繧定｡ｨ遉ｺ縺励∪縺帙ｓ縲・
+      </p>
+      <ul class="list">
+        <li>逕ｳ隲九し繝昴・繝郁ｲｻ逕ｨ・啀LACEHOLDER_APPLICATION_FEE</li>
+        <li>謌仙粥蝣ｱ驟ｬ邇・ｼ啀LACEHOLDER_SUCCESS_RATE</li>
+        <li>蛻晏屓謾ｯ謇慕紫・啀LACEHOLDER_INITIAL_PAYMENT_RATE</li>
+        <li>譛菴手ｲｻ逕ｨ・啀LACEHOLDER_MINIMUM_FEE</li>
+      </ul>
+
+      <h2>縺翫☆縺吶ａ縺ｮ逶ｸ隲・婿豕・/h2>
+      <div id="leadBox" class="lead-box"></div>
+
+      <div class="actions">
+        <button class="primary" type="button" onclick="restart()">繧ゅ≧荳蠎ｦ繝√ぉ繝・け縺吶ｋ</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        id: "age",
+        text: "迴ｾ蝨ｨ縺ｮ蟷ｴ鮨｢繧帝∈繧薙〒縺上□縺輔＞縲・,
+        options: [
+          { label: "20豁ｳ譛ｪ貅", value: "under20" },
+          { label: "20豁ｳ莉･荳・5豁ｳ譛ｪ貅", value: "20to64" },
+          { label: "65豁ｳ莉･荳・, value: "65plus" }
+        ]
+      },
+      {
+        id: "firstVisit",
+        text: "蛻晁ｨｺ譌･縲√∪縺溘・蛻昴ａ縺ｦ蛹ｻ逋よｩ滄未繧貞女險ｺ縺励◆譎よ悄縺ｯ蛻・°繧翫∪縺吶°・・,
+        options: [
+          { label: "蛻・°繧・, value: "known" },
+          { label: "縺縺・◆縺・・縺九ｋ", value: "rough" },
+          { label: "蛻・°繧峨↑縺・, value: "unknown" }
+        ]
+      },
+      {
+        id: "pensionTypeAtFirstVisit",
+        text: "蛻晁ｨｺ譌･譎らせ縺ｮ蟷ｴ驥大刈蜈･迥ｶ豕√ｒ驕ｸ繧薙〒縺上□縺輔＞縲・,
+        options: [
+          { label: "蝗ｽ豌大ｹｴ驥・, value: "national" },
+          { label: "蜴夂函蟷ｴ驥・, value: "employee" },
+          { label: "蜈ｱ貂亥ｹｴ驥・, value: "mutualAid" },
+          { label: "蛻・°繧峨↑縺・, value: "unknown" }
+        ]
+      },
+      {
+        id: "pensionPaid",
+        text: "蛻晁ｨｺ譌･蜑阪・菫晞匱譁咏ｴ堺ｻ倡憾豕√・遒ｺ隱阪〒縺阪◎縺・〒縺吶°・・,
+        options: [
+          { label: "遒ｺ隱阪〒縺阪ｋ", value: "ok" },
+          { label: "荳榊ｮ峨′縺ゅｋ", value: "unclear" },
+          { label: "蛻・°繧峨↑縺・, value: "unknown" }
+        ]
+      },
+      {
+        id: "afterOneYearSixMonths",
+        text: "蛻晁ｨｺ譌･縺九ｉ1蟷ｴ6縺区怦莉･荳顔ｵ碁℃縺励※縺・∪縺吶°・・,
+        options: [
+          { label: "邨碁℃縺励※縺・ｋ", value: "yes" },
+          { label: "縺ｾ縺邨碁℃縺励※縺・↑縺・, value: "no" },
+          { label: "蛻・°繧峨↑縺・, value: "unknown" }
+        ]
+      },
+      {
+        id: "symptomCategory",
+        text: "迴ｾ蝨ｨ縺ｮ逞・ｾ九き繝・ざ繝ｪ縺ｫ霑代＞繧ゅ・繧帝∈繧薙〒縺上□縺輔＞縲・,
+        options: [
+          { label: "縺薙％繧阪・荳崎ｪｿ", value: "mental" },
+          { label: "霄ｫ菴薙・髫懷ｮｳ繝ｻ逞・ｰ・, value: "physical" },
+          { label: "逋ｺ驕斐・遏･逧・・鬮俶ｬ｡閼ｳ讖溯・縺ｪ縺ｩ", value: "developmental" },
+          { label: "縺昴・莉悶・縺ｾ縺謨ｴ逅・〒縺阪※縺・↑縺・, value: "other" }
+        ]
+      },
+      {
+        id: "dailyLife",
+        text: "譌･蟶ｸ逕滓ｴｻ縺ｫ謾ｯ髫懊・縺ゅｊ縺ｾ縺吶°・・,
+        options: [
+          { label: "縺九↑繧頑髪髫懊′縺ゅｋ", value: "high" },
+          { label: "荳驛ｨ謾ｯ髫懊′縺ゅｋ", value: "medium" },
+          { label: "縺ゅ∪繧頑髪髫懊・縺ｪ縺・, value: "low" }
+        ]
+      },
+      {
+        id: "work",
+        text: "迴ｾ蝨ｨ縺ｮ蟆ｱ蜉ｴ迥ｶ豕√ｒ驕ｸ繧薙〒縺上□縺輔＞縲・,
+        options: [
+          { label: "蜒阪＞縺ｦ縺・↑縺・, value: "notWorking" },
+          { label: "遏ｭ譎る俣繝ｻ驟肴・縺ゅｊ縺ｧ蜒阪＞縺ｦ縺・ｋ", value: "limited" },
+          { label: "騾壼ｸｸ蜍､蜍吶↓霑代＞", value: "regular" }
+        ]
+      },
+      {
+        id: "applicationHistory",
+        text: "驕主悉縺ｮ逕ｳ隲区ｭｴ繧帝∈繧薙〒縺上□縺輔＞縲・,
+        options: [
+          { label: "逕ｳ隲九＠縺溘％縺ｨ縺ｯ縺ｪ縺・, value: "none" },
+          { label: "逕ｳ隲九＠縺溘′荳肴髪邨ｦ縺縺｣縺・, value: "rejected" },
+          { label: "逕ｳ隲倶ｸｭ", value: "inProgress" },
+          { label: "蛻・°繧峨↑縺・, value: "unknown" }
+        ]
+      },
+      {
+        id: "complexFactors",
+        text: "莠区腐繝ｻ蜉ｴ轣ｽ繝ｻ蜀・ｸ・未菫ゅ↑縺ｩ縺ｮ隍・尅隕∫ｴ縺ｯ縺ゅｊ縺ｾ縺吶°・・,
+        options: [
+          { label: "莠区腐縺碁未菫ゅ＠縺ｦ縺・ｋ", value: "accident" },
+          { label: "蜉ｴ轣ｽ縺碁未菫ゅ＠縺ｦ縺・ｋ", value: "workInjury" },
+          { label: "蜀・ｸ・未菫ゅ↑縺ｩ螳ｶ譌城未菫ゅ・遒ｺ隱阪′蠢・ｦ・, value: "family" },
+          { label: "迚ｹ縺ｫ縺ｪ縺・, value: "none" },
+          { label: "蛻・°繧峨↑縺・, value: "unknown" }
+        ]
+      },
+      {
+        id: "region",
+        text: "驛ｽ驕灘ｺ懃恁繧帝∈繧薙〒縺上□縺輔＞縲・,
+        options: [
+          { label: "蟇悟ｱｱ繝ｻ遏ｳ蟾・, value: "hokuriku" },
+          { label: "縺昴・莉悶・蝨ｰ蝓・, value: "other" }
+        ]
+      }
+    ];
+
+    const answers = {};
+    let currentIndex = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const stepLabelEl = document.getElementById("stepLabel");
+    const progressBar = document.getElementById("progressBar");
+    const backButton = document.getElementById("backButton");
+    const restartButton = document.getElementById("restartButton");
+
+    backButton.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex -= 1;
+        renderQuestion();
+      }
+    });
+
+    restartButton.addEventListener("click", restart);
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      const progress = Math.round((currentIndex / questions.length) * 100);
+
+      stepLabelEl.textContent = `${currentIndex + 1} / ${questions.length}`;
+      progressBar.style.width = `${progress}%`;
+      questionEl.textContent = q.text;
+      optionsEl.innerHTML = "";
+
+      q.options.forEach((option) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option";
+        button.textContent = option.label;
+        button.addEventListener("click", () => {
+          answers[q.id] = option.value;
+          if (currentIndex < questions.length - 1) {
+            currentIndex += 1;
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        });
+        optionsEl.appendChild(button);
+      });
+
+      backButton.disabled = currentIndex === 0;
+    }
+
+    function showResult() {
+      progressBar.style.width = "100%";
+      document.getElementById("chat").classList.add("hidden");
+      document.getElementById("result").classList.remove("hidden");
+
+      const score = calculateScore();
+      const result = buildResult(score);
+
+      document.getElementById("resultTitle").textContent = result.title;
+      document.getElementById("resultBody").textContent = result.body;
+
+      renderLeads();
+    }
+
+    function calculateScore() {
+      let score = 0;
+
+      if (answers.age === "20to64") score += 2;
+      if (answers.age === "under20" || answers.age === "65plus") score += 1;
+
+      if (answers.firstVisit === "known") score += 2;
+      if (answers.firstVisit === "rough") score += 1;
+
+      if (answers.pensionTypeAtFirstVisit === "employee" || answers.pensionTypeAtFirstVisit === "mutualAid") score += 2;
+      if (answers.pensionTypeAtFirstVisit === "national") score += 1;
+
+      if (answers.pensionPaid === "ok") score += 2;
+      if (answers.pensionPaid === "unclear") score += 1;
+
+      if (answers.afterOneYearSixMonths === "yes") score += 2;
+      if (answers.afterOneYearSixMonths === "unknown") score += 1;
+
+      if (answers.dailyLife === "high") score += 2;
+      if (answers.dailyLife === "medium") score += 1;
+
+      if (answers.work === "notWorking") score += 2;
+      if (answers.work === "limited") score += 1;
+
+      if (answers.applicationHistory === "rejected") score += 1;
+      if (answers.applicationHistory === "unknown") score -= 1;
+
+      if (answers.complexFactors === "accident" || answers.complexFactors === "workInjury" || answers.complexFactors === "family") score -= 1;
+      if (answers.complexFactors === "unknown") score -= 1;
+
+      return score;
+    }
+
+    function buildResult(score) {
+      if (answers.afterOneYearSixMonths === "no") {
+        return {
+          title: "蟇ｾ雎｡螟悶・蜿ｯ閭ｽ諤ｧ縺後≠繧翫∪縺・,
+          body: "蛻晁ｨｺ譌･縺九ｉ1蟷ｴ6縺区怦繧堤ｵ碁℃縺励※縺・↑縺・ｴ蜷医∫樟譎らせ縺ｧ縺ｯ逕ｳ隲区凾譛溘・遒ｺ隱阪′蠢・ｦ√〒縺吶ゆｾ句､悶ｂ縺ゅｋ縺溘ａ蟆る摩螳ｶ遒ｺ隱阪ｒ縺翫☆縺吶ａ縺励∪縺吶・
+        };
+      }
+
+      if (
+        answers.firstVisit === "unknown" ||
+        answers.pensionPaid === "unknown" ||
+        answers.pensionTypeAtFirstVisit === "unknown"
+      ) {
+        return {
+          title: "繝√Ε繝・ヨ縺ｧ縺ｯ蛻､螳壹〒縺阪∪縺帙ｓ",
+          body: "蛻晁ｨｺ譌･縲∝ｹｴ驥大刈蜈･迥ｶ豕√∽ｿ晞匱譁咏ｴ堺ｻ倡憾豕√・遒ｺ隱阪′蠢・ｦ√〒縺吶ょ・縺九ｋ遽・峇繧呈紛逅・＠縺ｦ蟆る摩螳ｶ縺ｸ逶ｸ隲・＠縺ｦ縺上□縺輔＞縲・
+        };
+      }
+
+      if (score >= 12) {
+        return {
+          title: "蜿礼ｵｦ蜿ｯ閭ｽ諤ｧ縺碁ｫ倥＞",
+          body: "蛻晁ｨｺ譌･縲∽ｿ晞匱譁咏ｴ堺ｻ倡憾豕√∵律蟶ｸ逕滓ｴｻ繧・ｰｱ蜉ｴ迥ｶ豕√ｒ謨ｴ逅・＠縺溘≧縺医〒縲∝ｰる摩螳ｶ縺ｸ縺ｮ逶ｸ隲・ｒ縺翫☆縺吶ａ縺励∪縺吶・
+        };
+      }
+
+      if (score >= 8) {
+        return {
+          title: "蜿礼ｵｦ蜿ｯ閭ｽ諤ｧ縺後≠繧翫∪縺・,
+          body: "遒ｺ隱阪☆縺ｹ縺埼・岼縺梧ｮ九▲縺ｦ縺・∪縺吶ょ・險ｺ譌･繧・ｿ晞匱譁咏ｴ堺ｻ倡憾豕√ｒ謨ｴ逅・＠縺ｦ逶ｸ隲・↓騾ｲ繧縺ｮ縺後ｈ縺・憾諷九〒縺吶・
+        };
+      }
+
+      if (score >= 4) {
+        return {
+          title: "蟆る摩螳ｶ遒ｺ隱阪ｒ縺翫☆縺吶ａ",
+          body: "迴ｾ譎らせ縺ｧ縺ｯ蛻､譁ｭ譚先侭縺御ｸ崎ｶｳ縺励※縺・∪縺吶ょｯｾ雎｡縺ｫ縺ｪ繧句庄閭ｽ諤ｧ繧堤｢ｺ隱阪☆繧九◆繧√∝ｿ・ｦ・・岼繧呈紛逅・＠縺ｦ縺上□縺輔＞縲・
+        };
+      }
+
+      return {
+        title: "蟇ｾ雎｡螟悶・蜿ｯ閭ｽ諤ｧ縺後≠繧翫∪縺・,
+        body: "蜈･蜉帛・螳ｹ縺縺代〒縺ｯ蜿礼ｵｦ蜿ｯ閭ｽ諤ｧ縺御ｽ弱＞縲√∪縺溘・遒ｺ隱堺ｸ崎ｶｳ縺ｮ蜿ｯ閭ｽ諤ｧ縺後≠繧翫∪縺吶よ怙邨ょ愛譁ｭ縺ｯ蟆る摩螳ｶ遒ｺ隱阪′蠢・ｦ√〒縺吶・
+      };
+    }
+
+    function renderLeads() {
+      const leadBox = document.getElementById("leadBox");
+      leadBox.innerHTML = "";
+
+      const region = answers.region;
+      const methods = region === "hokuriku"
+        ? ["Zoom", "髮ｻ隧ｱ", "辟｡譁咏嶌隲・ｼ・, "蟇ｾ髱｢逶ｸ隲・, "LINE"]
+        : ["Zoom", "髮ｻ隧ｱ", "辟｡譁咏嶌隲・ｼ・, "LINE"];
+
+      methods.forEach((method, index) => {
+        const div = document.createElement("div");
+        div.className = "lead";
+        div.innerHTML = `
+          <span class="pill">蜆ｪ蜈亥ｺｦ ${index + 1}</span>
+          <strong>${method}</strong>
+          <p class="muted">螳滓磁邯壹・縺ｾ縺陦後＞縺ｾ縺帙ｓ縲る｣邨｡蜈医ｄURL縺ｯ譛ｬ逡ｪ謇ｿ隱榊ｾ後↓蛻･邂｡逅・＠縺ｾ縺吶・/p>
+        `;
+        leadBox.appendChild(div);
+      });
+    }
+
+    function restart() {
+      Object.keys(answers).forEach((key) => delete answers[key]);
+      currentIndex = 0;
+      document.getElementById("result").classList.add("hidden");
+      document.getElementById("chat").classList.remove("hidden");
+      renderQuestion();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
