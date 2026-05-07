@@ -1,48 +1,189 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>障害年金チャットボット試用版</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>障害年金チャットボット試作</title>
   <style>
+    :root {
+      --bg: #f4f8fb;
+      --card: #ffffff;
+      --main: #1f6f8b;
+      --main-dark: #155270;
+      --text: #1f2933;
+      --muted: #64748b;
+      --line: #dbe7ef;
+      --warn: #fff7ed;
+      --warn-line: #fed7aa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f4f8fb;
-      color: #1f2933;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.7;
     }
-    main {
-      max-width: 860px;
+
+    .wrap {
+      max-width: 920px;
       margin: 0 auto;
       padding: 24px;
     }
-    .hero, .card {
-      background: #fff;
-      border: 1px solid #dbe7ef;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
-    }
+
     .hero {
-      background: linear-gradient(135deg, #e8f5fb, #fff);
+      background: linear-gradient(135deg, #e8f5fb, #ffffff);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 20px;
     }
+
     h1 {
       margin: 0 0 8px;
       font-size: 28px;
+      line-height: 1.3;
     }
+
     h2 {
-      margin: 0 0 12px;
       font-size: 20px;
+      margin: 0 0 12px;
     }
+
     p {
       margin: 0 0 12px;
     }
+
     .muted {
-      color: #64748b;
+      color: var(--muted);
       font-size: 14px;
     }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .progress {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 16px 0;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--main);
+      transition: width 0.2s ease;
+    }
+
+    .question {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .option {
+      width: 100%;
+      border: 2px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .option:hover {
+      border-color: var(--main);
+      background: #f0f9ff;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .primary {
+      border: 0;
+      background: var(--main);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .primary:hover {
+      background: var(--main-dark);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .notice {
+      background: var(--warn);
+      border: 1px solid var(--warn-line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .result {
+      border-left: 6px solid var(--main);
+      padding-left: 14px;
+      margin-bottom: 16px;
+    }
+
+    .list {
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+
+    .lead-box {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 12px;
+    }
+
+    .lead {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+    }
+
     .pill {
       display: inline-block;
       background: #e0f2fe;
@@ -53,88 +194,20 @@
       font-weight: 700;
       margin-bottom: 8px;
     }
-    .progress {
-      height: 10px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 16px 0;
-    }
-    .progress span {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: #1f6f8b;
-    }
-    .question {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .options {
-      display: grid;
-      gap: 10px;
-    }
-    button {
-      font: inherit;
-    }
-    .option {
-      width: 100%;
-      border: 2px solid #dbe7ef;
-      background: #fff;
-      color: #1f2933;
-      border-radius: 14px;
-      padding: 14px 16px;
-      text-align: left;
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .option:hover {
-      border-color: #1f6f8b;
-      background: #f0f9ff;
-    }
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-    .primary, .secondary {
-      border-radius: 999px;
-      padding: 12px 18px;
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .primary {
-      border: 0;
-      background: #1f6f8b;
-      color: #fff;
-    }
-    .secondary {
-      border: 1px solid #dbe7ef;
-      background: #fff;
-      color: #1f2933;
-    }
-    .notice {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 14px;
-    }
+
     .hidden {
       display: none;
     }
-    ul {
-      margin-top: 8px;
-    }
+
     @media (max-width: 640px) {
-      main {
+      .wrap {
         padding: 14px;
       }
+
       h1 {
         font-size: 23px;
       }
+
       .question {
         font-size: 19px;
       }
@@ -142,24 +215,34 @@
   </style>
 </head>
 <body>
-  <main>
+  <main class="wrap">
     <section class="hero">
-      <span class="pill">試用版</span>
+      <span class="pill">試作版</span>
       <h1>障害年金 受給可能性チェック</h1>
-      <p>いくつかの質問に答えると、障害年金について相談すべきかの目安を確認できます。</p>
-      <p class="muted">この画面は確認用の試用版です。受給可否を保証するものではありません。</p>
+      <p>
+        いくつかの質問に答えると、受給可能性の目安と、次に相談すべき方法を確認できます。
+      </p>
+      <p class="muted">
+        この画面はローカル確認用の試作品です。受給可否を保証するものではありません。
+      </p>
     </section>
 
     <section class="card">
       <h2>入力しない情報</h2>
-      <p class="muted">この試用版では、氏名・住所・電話番号・メールアドレス・マイナンバー・年金番号・診断書画像などの個人情報は入力しません。</p>
+      <p class="muted">
+        この試作では、氏名・住所・電話番号・メールアドレス・マイナンバー・年金番号・診断書画像・本人確認書類は入力しません。
+      </p>
     </section>
 
     <section id="chat" class="card">
-      <div class="progress"><span id="progressBar"></span></div>
+      <div class="progress" aria-label="進行状況">
+        <span id="progressBar"></span>
+      </div>
+
       <p id="stepLabel" class="muted"></p>
       <div id="question" class="question"></div>
       <div id="options" class="options"></div>
+
       <div class="actions">
         <button id="backButton" class="secondary" type="button">戻る</button>
         <button id="restartButton" class="secondary" type="button">最初からやり直す</button>
@@ -167,21 +250,33 @@
     </section>
 
     <section id="result" class="card hidden">
-      <p class="muted">チェック結果</p>
-      <h2 id="resultTitle"></h2>
-      <p id="resultBody"></p>
-      <div class="notice">
-        <strong>注意事項</strong>
-        <p>この結果は目安です。実際の判断には、初診日、保険料納付状況、診断書、生活状況、就労状況などの確認が必要です。</p>
+      <div class="result">
+        <p class="muted">判定結果</p>
+        <h2 id="resultTitle"></h2>
+        <p id="resultBody"></p>
       </div>
-      <h2>このあと確認すること</h2>
-      <ul>
-        <li>初診日がいつか</li>
-        <li>初診日時点の年金加入状況</li>
-        <li>保険料納付状況</li>
-        <li>日常生活や仕事への影響</li>
-        <li>診断書でどのように記載されるか</li>
+
+      <div class="notice">
+        <strong>注意書き</strong>
+        <p>
+          判定は経験則による目安です。実際の結果は、初診日、保険料納付状況、診断書、生活状況、就労状況などで変わります。
+        </p>
+      </div>
+
+      <h2>料金表示</h2>
+      <p>
+        料金は正式相談後に確認します。ここでは実数値を表示しません。
+      </p>
+      <ul class="list">
+        <li>申請サポート費用：PLACEHOLDER_APPLICATION_FEE</li>
+        <li>成功報酬率：PLACEHOLDER_SUCCESS_RATE</li>
+        <li>初回支払率：PLACEHOLDER_INITIAL_PAYMENT_RATE</li>
+        <li>最低費用：PLACEHOLDER_MINIMUM_FEE</li>
       </ul>
+
+      <h2>おすすめの相談方法</h2>
+      <div id="leadBox" class="lead-box"></div>
+
       <div class="actions">
         <button class="primary" type="button" onclick="restart()">もう一度チェックする</button>
       </div>
@@ -209,17 +304,18 @@
         ]
       },
       {
-        id: "pensionType",
+        id: "pensionTypeAtFirstVisit",
         text: "初診日時点の年金加入状況を選んでください。",
         options: [
           { label: "国民年金", value: "national" },
           { label: "厚生年金", value: "employee" },
+          { label: "共済年金", value: "mutualAid" },
           { label: "分からない", value: "unknown" }
         ]
       },
       {
-        id: "paid",
-        text: "保険料の納付状況は確認できそうですか？",
+        id: "pensionPaid",
+        text: "初診日前の保険料納付状況は確認できそうですか？",
         options: [
           { label: "確認できる", value: "ok" },
           { label: "不安がある", value: "unclear" },
@@ -233,6 +329,16 @@
           { label: "経過している", value: "yes" },
           { label: "まだ経過していない", value: "no" },
           { label: "分からない", value: "unknown" }
+        ]
+      },
+      {
+        id: "symptomCategory",
+        text: "現在の症例カテゴリに近いものを選んでください。",
+        options: [
+          { label: "こころの不調", value: "mental" },
+          { label: "身体の障害・病気", value: "physical" },
+          { label: "発達・知的・高次脳機能など", value: "developmental" },
+          { label: "その他・まだ整理できていない", value: "other" }
         ]
       },
       {
@@ -251,6 +357,35 @@
           { label: "働いていない", value: "notWorking" },
           { label: "短時間・配慮ありで働いている", value: "limited" },
           { label: "通常勤務に近い", value: "regular" }
+        ]
+      },
+      {
+        id: "applicationHistory",
+        text: "過去の申請歴を選んでください。",
+        options: [
+          { label: "申請したことはない", value: "none" },
+          { label: "申請したが不支給だった", value: "rejected" },
+          { label: "申請中", value: "inProgress" },
+          { label: "分からない", value: "unknown" }
+        ]
+      },
+      {
+        id: "complexFactors",
+        text: "事故・労災・内縁関係などの複雑要素はありますか？",
+        options: [
+          { label: "事故が関係している", value: "accident" },
+          { label: "労災が関係している", value: "workInjury" },
+          { label: "内縁関係など家族関係の確認が必要", value: "family" },
+          { label: "特にない", value: "none" },
+          { label: "分からない", value: "unknown" }
+        ]
+      },
+      {
+        id: "region",
+        text: "都道府県を選んでください。",
+        options: [
+          { label: "富山・石川", value: "hokuriku" },
+          { label: "その他の地域", value: "other" }
         ]
       }
     ];
@@ -304,50 +439,117 @@
     }
 
     function showResult() {
+      progressBar.style.width = "100%";
       document.getElementById("chat").classList.add("hidden");
       document.getElementById("result").classList.remove("hidden");
 
       const score = calculateScore();
+      const result = buildResult(score);
 
-      if (answers.afterOneYearSixMonths === "no") {
-        setResult("確認が必要です", "初診日から1年6か月を経過していない場合、請求時期の確認が必要です。例外もあるため、専門家への確認をおすすめします。");
-        return;
-      }
+      document.getElementById("resultTitle").textContent = result.title;
+      document.getElementById("resultBody").textContent = result.body;
 
-      if (answers.firstVisit === "unknown" || answers.pensionType === "unknown" || answers.paid === "unknown") {
-        setResult("まず基礎情報の確認が必要です", "初診日、年金加入状況、保険料納付状況の確認が必要です。分かる範囲を整理して相談することをおすすめします。");
-        return;
-      }
-
-      if (score >= 9) {
-        setResult("相談をおすすめします", "受給可能性を確認する価値が高い状態です。初診日や診断書、生活状況を整理して専門家に相談することをおすすめします。");
-      } else if (score >= 6) {
-        setResult("可能性があります", "追加確認が必要ですが、相談対象になる可能性があります。判断材料を整理して確認してください。");
-      } else {
-        setResult("追加確認が必要です", "入力内容だけでは判断材料が不足しています。初診日や生活状況などを整理して確認してください。");
-      }
+      renderLeads();
     }
 
     function calculateScore() {
       let score = 0;
+
       if (answers.age === "20to64") score += 2;
+      if (answers.age === "under20" || answers.age === "65plus") score += 1;
+
       if (answers.firstVisit === "known") score += 2;
       if (answers.firstVisit === "rough") score += 1;
-      if (answers.pensionType === "employee") score += 2;
-      if (answers.pensionType === "national") score += 1;
-      if (answers.paid === "ok") score += 2;
-      if (answers.paid === "unclear") score += 1;
+
+      if (answers.pensionTypeAtFirstVisit === "employee" || answers.pensionTypeAtFirstVisit === "mutualAid") score += 2;
+      if (answers.pensionTypeAtFirstVisit === "national") score += 1;
+
+      if (answers.pensionPaid === "ok") score += 2;
+      if (answers.pensionPaid === "unclear") score += 1;
+
       if (answers.afterOneYearSixMonths === "yes") score += 2;
+      if (answers.afterOneYearSixMonths === "unknown") score += 1;
+
       if (answers.dailyLife === "high") score += 2;
       if (answers.dailyLife === "medium") score += 1;
+
       if (answers.work === "notWorking") score += 2;
       if (answers.work === "limited") score += 1;
+
+      if (answers.applicationHistory === "rejected") score += 1;
+      if (answers.applicationHistory === "unknown") score -= 1;
+
+      if (answers.complexFactors === "accident" || answers.complexFactors === "workInjury" || answers.complexFactors === "family") score -= 1;
+      if (answers.complexFactors === "unknown") score -= 1;
+
       return score;
     }
 
-    function setResult(title, body) {
-      document.getElementById("resultTitle").textContent = title;
-      document.getElementById("resultBody").textContent = body;
+    function buildResult(score) {
+      if (answers.afterOneYearSixMonths === "no") {
+        return {
+          title: "対象外の可能性があります",
+          body: "初診日から1年6か月を経過していない場合、現時点では申請時期の確認が必要です。例外もあるため専門家確認をおすすめします。"
+        };
+      }
+
+      if (
+        answers.firstVisit === "unknown" ||
+        answers.pensionPaid === "unknown" ||
+        answers.pensionTypeAtFirstVisit === "unknown"
+      ) {
+        return {
+          title: "チャットでは判定できません",
+          body: "初診日、年金加入状況、保険料納付状況の確認が必要です。分かる範囲を整理して専門家へ相談してください。"
+        };
+      }
+
+      if (score >= 12) {
+        return {
+          title: "受給可能性が高い",
+          body: "初診日、保険料納付状況、日常生活や就労状況を整理したうえで、専門家への相談をおすすめします。"
+        };
+      }
+
+      if (score >= 8) {
+        return {
+          title: "受給可能性があります",
+          body: "確認すべき項目が残っています。初診日や保険料納付状況を整理して相談に進むのがよい状態です。"
+        };
+      }
+
+      if (score >= 4) {
+        return {
+          title: "専門家確認をおすすめ",
+          body: "現時点では判断材料が不足しています。対象になる可能性を確認するため、必要項目を整理してください。"
+        };
+      }
+
+      return {
+        title: "対象外の可能性があります",
+        body: "入力内容だけでは受給可能性が低い、または確認不足の可能性があります。最終判断は専門家確認が必要です。"
+      };
+    }
+
+    function renderLeads() {
+      const leadBox = document.getElementById("leadBox");
+      leadBox.innerHTML = "";
+
+      const region = answers.region;
+      const methods = region === "hokuriku"
+        ? ["Zoom", "電話", "無料相談会", "対面相談", "LINE"]
+        : ["Zoom", "電話", "無料相談会", "LINE"];
+
+      methods.forEach((method, index) => {
+        const div = document.createElement("div");
+        div.className = "lead";
+        div.innerHTML = `
+          <span class="pill">優先度 ${index + 1}</span>
+          <strong>${method}</strong>
+          <p class="muted">実接続はまだ行いません。連絡先やURLは本番承認後に別管理します。</p>
+        `;
+        leadBox.appendChild(div);
+      });
     }
 
     function restart() {
