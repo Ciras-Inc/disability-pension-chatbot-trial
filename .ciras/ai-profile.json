@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "policy_id": "CIRAS-SUCCESS-20261028-R2.1",
+  "repository": "Ciras-Inc/disability-pension-chatbot-trial",
+  "profile_id": "Ciras-Inc/disability-pension-chatbot-trial",
+  "base_commit": "e7a26694d41ac50a9d6bc30d3c703ba0578c2cc4",
+  "default_branch": "main",
+  "classification": "active",
+  "native_runtime_verified": false,
+  "protected_branch_conditions": [],
+  "required_checks": [],
+  "local_check_commands": [],
+  "existing_native_settings": [],
+  "runtime_test_status": "not-run: product executables unavailable in preparation environment",
+  "legacy_branch_protection_status": "unverified_403_on_three_representatives"
+}
