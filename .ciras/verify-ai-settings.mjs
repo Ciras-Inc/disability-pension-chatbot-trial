@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import process from 'node:process';
+import { TextDecoder } from 'node:util';
 
 export const POLICY_ID = 'CIRAS-SUCCESS-20261028-R2.1';
 export const MANIFEST_PATH = '.ciras/ai-settings-manifest.json';
@@ -83,7 +85,7 @@ function validCursorFrontmatter(text) {
     if (!field || fields.has(field[1])) return false;
     let value = field[2];
     if (field[1] === 'description') {
-      if (!value || /^[\[\]{},&*!|>@%`]/.test(value)) return false;
+      if (!value || '[]{},&*!|>@%`'.includes(value[0])) return false;
       if (value.startsWith('"')) {
         try { if (typeof JSON.parse(value) !== 'string') return false; }
         catch { return false; }
@@ -174,7 +176,7 @@ export function verify(root, { expectedManifestSha256 } = {}) {
   add('manifest-policy', manifest.policy_id === POLICY_ID, 'Manifest policy_id must match adopted R2.1.');
   add('manifest-source', manifest.source_repository === 'Ciras-Inc/ciras-os' && COMMIT.test(manifest.source_commit ?? ''),
     'Source repository and 40-hex commit format checked; existence and approval are not inferred.');
-  add('manifest-generator', manifest.generator_version === '1.0.0', 'Generator version must be 1.0.0.');
+  add('manifest-generator', manifest.generator_version === '1.0.1', 'Generator version must be 1.0.1.');
   add('manifest-profile', typeof manifest.profile_id === 'string' && REPO.test(manifest.profile_id) &&
     manifest.profile_id.startsWith('Ciras-Inc/') && !['.', '..'].includes(manifest.profile_id.split('/')[1]),
     'Profile must identify the target Ciras-Inc repository.');

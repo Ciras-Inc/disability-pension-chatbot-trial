@@ -4,8 +4,8 @@
 
 ## 配布版
 
-- 正本：Ciras-Inc/ciras-os の commit `c5314f29f2ee7706f3d553f6695840d9a05608ae`
-- 生成器：`1.0.0`
+- 正本：Ciras-Inc/ciras-os の commit `bf55c93a9f3a857c0100cdb7097cbcced4b2553a`
+- 生成器：`1.0.1`
 - 対象：`Ciras-Inc/disability-pension-chatbot-trial`
 - 既定branch：`main`
 - 配布台帳：`.ciras/governance-release.yaml`
