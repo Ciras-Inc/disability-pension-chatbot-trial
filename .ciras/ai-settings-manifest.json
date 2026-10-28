@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "policy_id": "CIRAS-SUCCESS-20261028-R2.1",
+  "source_repository": "Ciras-Inc/ciras-os",
+  "source_commit": "500db22a50d493566cde9c1617355cec5156134b",
+  "generator_version": "1.0.4",
+  "profile_id": "Ciras-Inc/disability-pension-chatbot-trial",
+  "base_commit": "e7a26694d41ac50a9d6bc30d3c703ba0578c2cc4",
+  "files": {
+    ".ciras/ai-profile.json": "83ba04a024f35f53f08f271e773e90b2ce2a609efabad70f7dc197e3dd2368b7",
+    ".ciras/governance-release.yaml": "c20522cda822227043f4806570e860c733f71f9838d753ac9a41b0fad11b4a3c",
+    ".ciras/policy.schema.json": "53ff996c707dc393c350f1fbb834112da9e04a1196979de0bc68306e84b785ac",
+    ".ciras/repository-context.md": "11168dcb9510d47cef0ddfc2d6bf4206723d9d9ce21032d590f7a2e0e585c7b2",
+    ".ciras/verify-ai-settings.mjs": "b6147707b2ccc1f631e4de07c21399b9388dcc117eab1bb1bd56f31c4e96643e",
+    ".cursor/rules/ciras-repository.mdc": "36e2c96c6956f4ebf831840b10e80398032d8a9e46c19aa4f1428261e4a797ee",
+    "00_CIRAS_POLICY.json": "9ce3b0a5df0ce83f87afbac4cd46fdec3a06f7d4cc6d95fb8bddcecd70b20a93",
+    "AGENTS.md": "1c0a89c03428a982382304f4d5ab6e48dae4a8d0362413c98f8df35e1df50d67",
+    "CLAUDE.md": "9d5ef38835575d8763c7937afed1f91b9c11cad4068c01305450b56fd5ec34d7",
+    "docs/AI_SETTINGS.md": "43707344ce48252f6f7325df9653d98d57d0307289977090566d76b4676bcbf0",
+    "README.md": "908236b411f0972afe8e196af64ab36c73500d28c9a71bc0e4102a621a4bafa5"
+  },
+  "native_runtime_verified": false
+}
